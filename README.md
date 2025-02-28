@@ -6,11 +6,12 @@
  npm init -y
 ```
 ```
-npm install
+ npm install
 ```
 ```
  npm start
 ```
+
 >localhost:3000
 >>Username: 1
 >>Password: 1
