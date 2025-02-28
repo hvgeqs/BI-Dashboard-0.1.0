@@ -1,8 +1,14 @@
 # BI-Dashboard
 ```
  cd .\BI-Dashboard
+```
+```
  npm init -y
- npm install
+```
+```
+npm install
+```
+```
  npm start
 ```
 >localhost:3000
