@@ -1,7 +1,7 @@
 # BI-Dashboard
 Install dependencies and start project on the localhost
 ```
- cd .\BI-Dashboard
+ cd .\BI-Dashboard-0.1.0
 ```
 ```
  npm init -y
