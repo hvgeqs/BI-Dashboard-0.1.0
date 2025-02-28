@@ -1,4 +1,5 @@
 # BI-Dashboard
+Install dependencies and start project on the localhost
 ```
  cd .\BI-Dashboard
 ```
