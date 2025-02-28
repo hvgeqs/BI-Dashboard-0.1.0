@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hotel Performance Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <h1>Hotel Performance Dashboard</h1>
+    <div id="date-filter" class="date-filter">
+      <select id="year">
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025" selected>2025</option>
+      </select>
+      <select id="month">
+        <option value="1">January</option>
+        <option value="2" selected>February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </header>
+  <div class="container">
+    <nav class="sidebar" id="sidebar">
+      <h2>Customer Actions</h2>
+      <section id="upload-section" style="display: none;">
+        <h3>Add Customers</h3>
+        <div id="drop-zone">Drop .txt file here or click to select</div>
+        <input type="file" id="file-input" style="display: none;" accept=".txt">
+      </section>
+      <section id="manual-entry-section" style="display: none;">
+        <h3>Add Customers</h3>
+        <form id="manual-entry-form">
+          <input type="text" id="name" placeholder="Name" required>
+          <div class="date-input-wrapper">
+            <input type="date" id="birthday" class="date-input" placeholder="Birthday" required>
+            <span class="date-placeholder">Birthday</span>
+          </div>
+          <select id="status" required>
+            <option value="member">Member</option>
+            <option value="general">General</option>
+          </select>
+          <div class="date-input-wrapper">
+            <input type="date" id="arrival_date" class="date-input" placeholder="Arrival Date" required>
+            <span class="date-placeholder">Arrival Date</span>
+          </div>
+          <div class="date-input-wrapper">
+            <input type="date" id="departure_date" class="date-input" placeholder="Departure Date" required>
+            <span class="date-placeholder">Departure Date</span>
+          </div>
+          <input type="text" id="room_unit" placeholder="Room Number" required>
+          <input type="number" id="total_room_price" placeholder="Total Room Price" step="0.01" required>
+          <div class="date-input-wrapper">
+            <input type="date" id="cancellation_date" class="date-input" placeholder="Cancellation Date">
+            <span class="date-placeholder">Cancellation Date</span>
+          </div>
+          <button type="submit">Add Customer</button>
+        </form>
+        <a href="customers.html" id="customers-link" style="display: none;" class="sidebar-button">Manage Customers</a>
+      </section>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-footer">
+        <button id="logout-button" style="display: none;" onclick="logout()" class="sidebar-button logout-btn">Logout</button>
+      </div>
+    </nav>
+    <main class="main-content">
+      <div class="dashboard-grid">
+        <div class="card">
+          <h3>Booking Arrivals</h3>
+          <canvas id="arrivalsChart"></canvas>
+        </div>
+        <div class="card">
+          <h3>Member vs General Guests</h3>
+          <canvas id="memberVsGeneralChart"></canvas>
+        </div>
+        <div class="card">
+          <h3>Today’s Movements</h3>
+          <canvas id="todayChart"></canvas>
+        </div>
+        <div class="card">
+          <h3>Occupancy & ADR</h3>
+          <canvas id="occupancyAdrChart"></canvas>
+        </div>
+        <div class="card">
+          <h3>Guest Birthdays This Month</h3>
+          <table id="guest-birthdays-table" class="birthdays-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Room</th>
+                <th>Birthday</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Age Group Segmentation</h3>
+          <canvas id="ageGroupChart"></canvas>
+        </div>
+        <div class="card">
+          <h3>Canceled Bookings</h3>
+          <canvas id="canceledBookingsChart"></canvas>
+        </div>
+        <div class="card">
+          <h3>Most Booked Units</h3>
+          <canvas id="frequentUnitsChart"></canvas>
+        </div>
+        <div class="card">
+          <h3>Total Income</h3>
+          <canvas id="incomeChart"></canvas>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dateInputs = document.querySelectorAll('.date-input');
+      dateInputs.forEach(input => {
+        const placeholder = input.nextElementSibling;
+        if (!input.value || input.value === '0000-00-00') {
+          input.value = '0000-00-00';
+          input.style.color = 'transparent';
+          placeholder.style.display = 'block';
+        } else {
+          placeholder.style.display = 'none';
+        }
+
+        input.addEventListener('focus', () => {
+          if (input.value === '0000-00-00') {
+            input.value = '';
+            input.style.color = '#000';
+            placeholder.style.display = 'none';
+          }
+        });
+
+        input.addEventListener('blur', () => {
+          if (!input.value) {
+            input.value = '0000-00-00';
+            input.style.color = 'transparent';
+            placeholder.style.display = 'block';
+          }
+        });
+
+        input.addEventListener('change', () => {
+          if (input.value && input.value !== '0000-00-00') {
+            input.style.color = '#000';
+            placeholder.style.display = 'none';
+          } else {
+            input.value = '0000-00-00';
+            input.style.color = 'transparent';
+            placeholder.style.display = 'block';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

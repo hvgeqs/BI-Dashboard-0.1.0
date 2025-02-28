@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer Management</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <h1>Customer Management</h1>
+  </header>
+  <div class="container">
+    <nav class="sidebar" id="sidebar">
+      <h2>Customer Actions</h2>
+      <section id="upload-section" style="display: none;">
+        <h3>Add Customers</h3>
+        <div id="drop-zone">Drop .txt file here or click to select</div>
+        <input type="file" id="file-input" style="display: none;" accept=".txt">
+      </section>
+      <section id="manual-entry-section" style="display: none;">
+        <h3>Add Customers</h3>
+        <form id="manual-entry-form">
+          <input type="text" id="name" placeholder="Name" required>
+          <div class="date-input-wrapper">
+            <input type="date" id="birthday" class="date-input" placeholder="Birthday" required>
+            <span class="date-placeholder">Birthday</span>
+          </div>
+          <select id="status" required>
+            <option value="member">Member</option>
+            <option value="general">General</option>
+          </select>
+          <div class="date-input-wrapper">
+            <input type="date" id="arrival_date" class="date-input" placeholder="Arrival Date" required>
+            <span class="date-placeholder">Arrival Date</span>
+          </div>
+          <div class="date-input-wrapper">
+            <input type="date" id="departure_date" class="date-input" placeholder="Departure Date" required>
+            <span class="date-placeholder">Departure Date</span>
+          </div>
+          <input type="text" id="room_unit" placeholder="Room Number" required>
+          <input type="number" id="total_room_price" placeholder="Total Room Price" step="0.01" required>
+          <div class="date-input-wrapper">
+            <input type="date" id="cancellation_date" class="date-input" placeholder="Cancellation Date">
+            <span class="date-placeholder">Cancellation Date</span>
+          </div>
+          <button type="submit">Add Customer</button>
+        </form>
+        <a href="dashboard.html" id="dashboard-link" style="display: none;" class="sidebar-button">Return to Dashboard</a>
+      </section>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-footer">
+        <button id="logout-button" style="display: none;" onclick="logout()" class="sidebar-button logout-btn">Logout</button>
+      </div>
+    </nav>
+    <main class="main-content">
+      <div id="customer-count" class="customer-count">Total Customers: 0</div>
+      <table id="customers-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Birthday</th>
+            <th>Status</th>
+            <th>Arrival Date</th>
+            <th>Departure Date</th>
+            <th>Room Unit</th>
+            <th>Total Room Price</th>
+            <th>Cancellation Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close">×</span>
+          <h2>Add Customer</h2>
+          <form id="modal-form">
+            <input type="text" id="modal-name" placeholder="Name" required>
+            <input type="date" id="modal-birthday" required>
+            <select id="modal-status" required>
+              <option value="member">Member</option>
+              <option value="general">General</option>
+            </select>
+            <input type="date" id="modal-arrival_date" required>
+            <input type="date" id="modal-departure_date" required>
+            <input type="text" id="modal-room_unit" placeholder="Room Number" required>
+            <input type="number" id="modal-total_room_price" placeholder="Total Room Price" step="0.01" required>
+            <input type="date" id="modal-cancellation_date" placeholder="Cancellation Date (optional)">
+            <button type="submit">Add Customer</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="customers.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dateInputs = document.querySelectorAll('.date-input');
+      dateInputs.forEach(input => {
+        const placeholder = input.nextElementSibling;
+        if (!input.value || input.value === '0000-00-00') {
+          input.value = '0000-00-00';
+          input.style.color = 'transparent';
+          placeholder.style.display = 'block';
+        } else {
+          placeholder.style.display = 'none';
+        }
+
+        input.addEventListener('focus', () => {
+          if (input.value === '0000-00-00') {
+            input.value = '';
+            input.style.color = '#000';
+            placeholder.style.display = 'none';
+          }
+        });
+
+        input.addEventListener('blur', () => {
+          if (!input.value) {
+            input.value = '0000-00-00';
+            input.style.color = 'transparent';
+            placeholder.style.display = 'block';
+          }
+        });
+
+        input.addEventListener('change', () => {
+          if (input.value && input.value !== '0000-00-00') {
+            input.style.color = '#000';
+            placeholder.style.display = 'none';
+          } else {
+            input.value = '0000-00-00';
+            input.style.color = 'transparent';
+            placeholder.style.display = 'block';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
