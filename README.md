@@ -1,5 +1,6 @@
 # BI-Dashboard
 Make sure you have [node.js](https://nodejs.org/en) installed
+
 Install dependencies and start project on the localhost
 ```
  cd .\BI-Dashboard-0.1.0
