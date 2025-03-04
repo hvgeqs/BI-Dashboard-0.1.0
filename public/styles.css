@@ -148,7 +148,7 @@ input, select, button {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #46aafc;
   color: white;
   border: none;
   cursor: pointer;
@@ -165,7 +165,7 @@ button:hover {
   margin: 5px 0 5px;
   text-align: center;
   font-size: 16px;
-  background-color: #4CAF50;
+  background-color: #46aafc;
   color: white;
   border: none;
   border-radius: 4px;
@@ -173,7 +173,7 @@ button:hover {
 }
 
 #manual-entry-form button[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #46aafc;
 }
 
 #manual-entry-section #customers-link {
@@ -182,7 +182,7 @@ button:hover {
   padding: 12px;
   margin: 5px 0 10px;
   text-align: center;
-  background-color: #4CAF50;
+  background-color: #46aafc;
   color: white;
   border: none;
   border-radius: 4px;
@@ -192,7 +192,7 @@ button:hover {
 }
 
 #manual-entry-section #customers-link:hover {
-  background-color: #45a049;
+  background-color: #46aafc;
 }
 
 .main-content {
@@ -274,7 +274,7 @@ button:hover {
 }
 
 #guest-birthdays-table th, .birthdays-table th {
-  background-color: #4CAF50;
+  background-color: #46aafc;
   color: white;
   font-weight: bold;
 }
@@ -305,7 +305,7 @@ button:hover {
   padding: 12px;
   margin: 5px 0 35px;
   text-align: center;
-  background-color: #4CAF50;
+  background-color: #46aafc;
   color: white;
   border: none;
   border-radius: 4px;
@@ -315,7 +315,7 @@ button:hover {
 }
 
 .sidebar-button:hover {
-  background-color: #45a049;
+  background-color: #46aafc;
 }
 
 .sidebar-spacer {
@@ -354,7 +354,7 @@ th, td {
 }
 
 th {
-  background-color: #4CAF50;
+  background-color: #46aafc;
   color: white;
 }
 
@@ -369,7 +369,7 @@ tr:hover {
 button {
   padding: 6px 12px;
   margin-right: 5px;
-  background-color: #4CAF50;
+  background-color: #46aafc;
   color: white;
   border: none;
   border-radius: 4px;
@@ -377,7 +377,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #46aafc;
 }
 
 .delete-btn {
@@ -536,7 +536,7 @@ button:hover {
     padding: 10px;
     margin: 5px 5px 5px;
     font-size: 16px;
-    background-color: #4CAF50;
+    background-color: #46aafc;
     color: white;
     border: none;
     border-radius: 4px;
@@ -544,7 +544,7 @@ button:hover {
   }
 
   #manual-entry-form button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #46aafc;
   }
 
   #manual-entry-section #customers-link {
@@ -553,7 +553,7 @@ button:hover {
     padding: 10px;
     margin: 5px 5px 10px;
     text-align: center;
-    background-color: #4CAF50;
+    background-color: #46aafc;
     color: white;
     border: none;
     border-radius: 4px;
@@ -563,7 +563,7 @@ button:hover {
   }
 
   #manual-entry-section #customers-link:hover {
-    background-color: #45a049;
+    background-color: #46aafc;
   }
 
   .sidebar-spacer {
