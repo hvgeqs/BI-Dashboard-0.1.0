@@ -17,7 +17,7 @@ app.use(fileUpload({
   useTempFiles: true,
   tempFileDir: path.join(__dirname, 'uploads/tmp'),
 }));
-app.use(express.static('public'));
+app.use(express.static('docs'));
 
 const authenticateToken = (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1] || req.body.token || req.query.token;
@@ -26,7 +26,7 @@ const authenticateToken = (req, res, next) => {
   next();
 };
 
-const customersFile = path.join(__dirname, 'public', 'customers.json');
+const customersFile = path.join(__dirname, 'docs', 'customers.json');
 let customers = [];
 
 const loadCustomers = async () => {
